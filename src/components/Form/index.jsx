@@ -1,10 +1,6 @@
 import { Component } from 'react';
 import css from './Form.module.css';
 import PropTypes from 'prop-types';
-import { nanoid } from 'nanoid';
-
-const nameId = nanoid();
-const numberId = nanoid();
 
 class Form extends Component {
   state = {
@@ -31,22 +27,21 @@ class Form extends Component {
       alert(`${name} is alredy in contacts`);
     } else {
       this.props.onSubmit(name, number);
+      this.setState({ name: '', number: '' });
     }
   }
 
   handleFormSubmit = e => {
     e.preventDefault();
     this.alertSameName();
-    this.setState({ name: '', number: '' });
   };
 
   render() {
     return (
       <form onSubmit={this.handleFormSubmit} className={css.form}>
-        <label className={css.label} htmlFor={nameId}>
+        <label className={css.label}>
           Name
           <input
-            id={nameId}
             value={this.state.name}
             onChange={this.hadleNameChange}
             className={css.input}
@@ -57,10 +52,9 @@ class Form extends Component {
             required
           />
         </label>
-        <label className={css.label} htmlFor={numberId}>
+        <label className={css.label}>
           Number
           <input
-            id={numberId}
             value={this.state.number}
             onChange={this.handleNumberChange}
             className={css.input}

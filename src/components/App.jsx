@@ -50,7 +50,7 @@ class App extends Component {
         <Filter onChangeFilter={this.changeFilter} valueFilter={filter} />
         {contacts.length > 0 && (
           <ContactsList
-            Onclick={this.deleteContact}
+            onClick={this.deleteContact}
             contacts={this.searchName()}
           />
         )}
